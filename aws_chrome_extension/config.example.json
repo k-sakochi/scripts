@@ -1,0 +1,14 @@
+{
+  "prodAccounts": ["123456789012"],
+  "devAccounts": ["210987654321"],
+  "roleRules": [
+    { "name": "Administrator", "match": ["Admin", "Administrator"], "color": "#DC2626" },
+    { "name": "Developer", "match": ["Dev", "Developer"], "color": "#2563EB" },
+    { "name": "ReadOnly", "match": ["ReadOnly", "Read-Only", "RO"], "color": "#6B7280" }
+  ],
+  "envColors": {
+    "Prod": "#F59E0B",
+    "Dev": "#2563EB",
+    "Unknown": "#64748B"
+  }
+}

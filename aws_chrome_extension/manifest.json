@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "AWS 環境リボン",
+  "version": "0.1.0",
+  "description": "AWS コンソールで環境と権限をリボン表示します。",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.console.aws.amazon.com/*",
+        "https://*.console.amazonaws.cn/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["config.local.json", "config.example.json"],
+      "matches": [
+        "https://*.console.aws.amazon.com/*",
+        "https://*.console.amazonaws.cn/*"
+      ]
+    }
+  ]
+}

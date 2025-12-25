@@ -8,6 +8,10 @@
   color: #ffffff;
 }
 
+#aws-env-ribbon.aws-env-ribbon--iam {
+  top: var(--aws-env-ribbon-top-iam, 72px);
+}
+
 #aws-env-ribbon .aws-env-ribbon__env {
   position: absolute;
   top: 0;

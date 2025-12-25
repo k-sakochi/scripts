@@ -7,11 +7,14 @@
     {
       "matches": [
         "https://*.console.aws.amazon.com/*",
-        "https://*.console.amazonaws.cn/*"
+        "https://*.console.amazonaws.cn/*",
+        "https://global.console.aws.amazon.com/*",
+        "https://a.b.cdn.console.awsstatic.com/*"
       ],
       "js": ["content.js"],
       "css": ["styles.css"],
-      "run_at": "document_idle"
+      "run_at": "document_idle",
+      "all_frames": true
     }
   ],
   "web_accessible_resources": [
@@ -19,7 +22,9 @@
       "resources": ["config.local.json", "config.example.json"],
       "matches": [
         "https://*.console.aws.amazon.com/*",
-        "https://*.console.amazonaws.cn/*"
+        "https://*.console.amazonaws.cn/*",
+        "https://global.console.aws.amazon.com/*",
+        "https://a.b.cdn.console.awsstatic.com/*"
       ]
     }
   ]

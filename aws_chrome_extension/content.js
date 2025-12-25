@@ -142,6 +142,12 @@
   }
 
   function renderRibbon(ribbon, info, config) {
+    if (location.href.includes("/iam/")) {
+      ribbon.classList.add("aws-env-ribbon--iam");
+    } else {
+      ribbon.classList.remove("aws-env-ribbon--iam");
+    }
+
     const envColor = (config.envColors && config.envColors[info.env]) || "#64748B";
     ribbon.style.setProperty("--env-color", envColor);
     ribbon.style.setProperty("--role-color", info.role.color);
@@ -156,13 +162,33 @@
   }
 
   function collectInfo(config) {
+    if (window.top !== window) {
+      try {
+        if (window.top.__awsEnvRibbonInfo) {
+          return window.top.__awsEnvRibbonInfo;
+        }
+      } catch (_) {
+        // 参照不可の場合は通常の取得にフォールバック
+      }
+    }
+
     const accountText = findAccountText();
     const accountId = extractAccountId(accountText);
     const principal = extractPrincipal(accountText);
     const env = classifyEnv(accountId, config);
     const role = classifyRole(principal, config);
 
-    return { accountId, principal, env, role };
+    const info = { accountId, principal, env, role };
+
+    if (window.top === window) {
+      try {
+        window.__awsEnvRibbonInfo = info;
+      } catch (_) {
+        // 保存できない場合は無視
+      }
+    }
+
+    return info;
   }
 
   async function loadConfig() {
